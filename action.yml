@@ -42,7 +42,7 @@ runs:
       shell: bash
       run: |
         echo "path=$(aqua which gh-label-kit)" >> "${GITHUB_OUTPUT}"
-      working_directory: ${{ github.action_path }}
+      working-directory: ${{ github.action_path }}
     - name: Labeler
       shell: bash
       env:

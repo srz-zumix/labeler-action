@@ -42,7 +42,7 @@ runs:
       env:
         GH_TOKEN: ${{ inputs.repo-token }}
       run: |
-        gh-label-kit labeler \
+        ${{ github.actions_path }}/gh-label-kit labeler \
           --config ${{ inputs.configuration-path }} \
           ${{ inputs.sync-labels && '--sync' || '' }} \
           ${{ inputs.pr-number }}

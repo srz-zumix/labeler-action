@@ -36,13 +36,13 @@ runs:
       with:
         aqua_version: v2.53.9
         policy_allow: true
-        working_directory: ${{ github.actions_path }}
+        working_directory: ${{ github.action_path }}
     - name: Labeler
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.repo-token }}
       run: |
-        ${{ github.actions_path }}/gh-label-kit labeler \
+        ${{ github.action_path }}/gh-label-kit labeler \
           --config ${{ inputs.configuration-path }} \
           ${{ inputs.sync-labels && '--sync' || '' }} \
           ${{ inputs.pr-number }}

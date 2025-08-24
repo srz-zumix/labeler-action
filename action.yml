@@ -41,6 +41,7 @@ runs:
       id: gh-labeler-kit
       shell: bash
       run: |
+        gh-label-kit --version
         echo "path=$(aqua which gh-label-kit)" >> "${GITHUB_OUTPUT}"
       working-directory: ${{ github.action_path }}
     - name: Labeler

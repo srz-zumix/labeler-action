@@ -33,6 +33,7 @@ runs:
   steps:
     - uses: aquaproj/aqua-installer@d1fe50798dbadd4eb5b98957290ca175f6b4870f # v4.0.2
       with:
+        aqua_version: 2.53.9
         policy_allow: true
         working_directory: ${{ github.actions_path }}
     - name: Labeler

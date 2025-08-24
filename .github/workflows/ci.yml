@@ -1,0 +1,12 @@
+name: Self Test
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: labeler
+        id: labeler
+        uses: ./

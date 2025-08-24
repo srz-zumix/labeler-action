@@ -1,0 +1,7 @@
+packages:
+  - type: github_release
+    repo_owner: srz-zumix
+    repo_name: gh-label-kit
+    description: gh extension of github label api
+    asset: "{{.OS}}-{{.Arch}}"
+    format: raw

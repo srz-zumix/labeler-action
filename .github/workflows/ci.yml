@@ -14,3 +14,7 @@ jobs:
       - name: labeler
         id: labeler
         uses: ./
+      - name: Test
+        shell: bash
+        run: |
+          test -n "${{ steps.labeler.outputs.all-labels }}"

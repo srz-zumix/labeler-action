@@ -14,3 +14,8 @@ documentation:
   - any-glob-to-any-file:
     - 'docs/*'
     - README.md
+
+labeler-action:
+- changed-files:
+  - any-glob-to-any-file:
+    - '*'

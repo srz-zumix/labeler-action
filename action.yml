@@ -20,6 +20,7 @@ inputs:
     required: false
   pr-number:
     description: 'The pull request number(s)'
+    default: ${{ github.event.number }}
     required: false
 
 outputs:
@@ -47,5 +48,5 @@ runs:
           ${{ inputs.pr-number }}
 
 branding:
-  icon: 'terminal'
-  color: 'black'
+  icon: 'bookmark'
+  color: 'gray-dark'

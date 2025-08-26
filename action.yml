@@ -48,11 +48,14 @@ runs:
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.repo-token }}
+        INPUTS_CONFIGURATION_PATH: ${{ inputs.configuration-path }}
+        INPUTS_PR_NUMBER: ${{ inputs.pr-number }}
+        GH_LABELER_KIT: ${{ steps.gh-labeler-kit.outputs.path }}
       run: |
-        ${{ steps.gh-labeler-kit.outputs.path }} labeler \
-          --config ${{ inputs.configuration-path }} \
+        "${GH_LABELER_KIT}" labeler \
+          --config ${INPUTS_CONFIGURATION_PATH} \
           ${{ inputs.sync-labels && '--sync' || '' }} \
-          ${{ inputs.pr-number }}
+          ${INPUTS_PR_NUMBER}
 
 branding:
   icon: 'bookmark'

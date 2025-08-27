@@ -26,8 +26,10 @@ inputs:
 outputs:
   new-labels:
     description: 'A comma-separated list of all new labels'
+    value: ${{ steps.labeler.outputs.new-labels }}
   all-labels:
     description: 'A comma-separated list of all labels that the PR contains'
+    value: ${{ steps.labeler.outputs.all-labels }}
 
 runs:
   using: 'composite'
@@ -45,6 +47,7 @@ runs:
         echo "path=$(aqua which gh-label-kit)" >> "${GITHUB_OUTPUT}"
       working-directory: ${{ github.action_path }}
     - name: Labeler
+      id: labeler
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.repo-token }}

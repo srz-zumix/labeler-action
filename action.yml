@@ -1,0 +1,65 @@
+name: 'Labeler'
+description: 'Automatically label new pull requests based on the paths of files being changed'
+author: 'srz-zumix'
+inputs:
+  repo-token:
+    description: 'The GitHub token used to manage labels'
+    required: false
+    default: ${{ github.token }}
+  configuration-path:
+    description: 'The path for the label configurations'
+    default: '.github/labeler.yml'
+    required: false
+  sync-labels:
+    description: 'Whether or not to remove labels when matching files are reverted'
+    default: false
+    required: false
+  dot:
+    description: 'This is a no side effect option for compatibility only'
+    default: true
+    required: false
+  pr-number:
+    description: 'The pull request number(s)'
+    default: ${{ github.event.number }}
+    required: false
+
+outputs:
+  new-labels:
+    description: 'A comma-separated list of all new labels'
+    value: ${{ steps.labeler.outputs.new-labels }}
+  all-labels:
+    description: 'A comma-separated list of all labels that the PR contains'
+    value: ${{ steps.labeler.outputs.all-labels }}
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: aquaproj/aqua-installer@d1fe50798dbadd4eb5b98957290ca175f6b4870f # v4.0.2
+      with:
+        aqua_version: v2.53.9
+        policy_allow: true
+        working_directory: ${{ github.action_path }}
+    - name: gh-labeler-kit path
+      id: gh-labeler-kit
+      shell: bash
+      run: |
+        gh-label-kit --version
+        echo "path=$(aqua which gh-label-kit)" >> "${GITHUB_OUTPUT}"
+      working-directory: ${{ github.action_path }}
+    - name: Labeler
+      id: labeler
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.repo-token }}
+        INPUTS_CONFIGURATION_PATH: ${{ inputs.configuration-path }}
+        INPUTS_PR_NUMBER: ${{ inputs.pr-number }}
+        GH_LABELER_KIT: ${{ steps.gh-labeler-kit.outputs.path }}
+      run: |
+        "${GH_LABELER_KIT}" labeler \
+          --config ${INPUTS_CONFIGURATION_PATH} \
+          ${{ inputs.sync-labels && '--sync' || '' }} \
+          ${INPUTS_PR_NUMBER}
+
+branding:
+  icon: 'bookmark'
+  color: 'gray-dark'

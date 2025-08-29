@@ -1,4 +1,4 @@
-name: 'Labeler'
+name: 'labeler-action'
 description: 'Automatically label new pull requests based on the paths of files being changed'
 author: 'srz-zumix'
 inputs:

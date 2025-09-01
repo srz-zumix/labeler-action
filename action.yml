@@ -62,6 +62,7 @@ runs:
         if [ "${INPUTS_SYNC_LABELS}" = "true" ]; then
           LABEL_KIT_OPTIONS+=(--sync)
         fi
+        set -x
         "${GH_LABELER_KIT}" labeler \
           --config ${INPUTS_CONFIGURATION_PATH} \
           "${LABEL_KIT_OPTIONS[@]}" \

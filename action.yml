@@ -55,6 +55,7 @@ runs:
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.repo-token }}
+        GH_ENTERPRISE_TOKEN: ${{ inputs.repo-token }}
         INPUTS_CONFIGURATION_PATH: ${{ inputs.configuration-path }}
         INPUTS_PR_NUMBER: ${{ inputs.pr-number }}
         INPUTS_SYNC_LABELS: ${{ inputs.sync-labels }}

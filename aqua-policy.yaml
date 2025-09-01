@@ -17,7 +17,7 @@ registries:
     ref: semver(">= 3.0.0")
   - name: local
     type: local
-    path: ./aqua-registry.yaml
+    path: aqua-registry.yaml
 
 packages:
 # Example

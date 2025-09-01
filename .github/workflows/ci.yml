@@ -19,6 +19,8 @@ jobs:
         with:
           path: labeler
           persist-credentials: false
+      - name: Remove .git
+        run: rm -rf labeler/.git
       - name: labeler
         id: labeler
         uses: ./labeler

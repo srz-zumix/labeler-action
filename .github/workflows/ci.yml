@@ -30,3 +30,52 @@ jobs:
           ALL_LABELS: ${{ steps.labeler.outputs.all-labels }}
         run: |
           test -n "${ALL_LABELS}"
+
+  sync-test:
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: labeler
+          persist-credentials: false
+      - name: labeler (add sync-test label)
+        id: sync-test-enable
+        uses: ./labeler
+        with:
+          pr-number: ${{ github.event.inputs.pr-number || github.event.number }}
+          configuration-path: .github/labeler-sync-test-enable.yml
+      - name: Test Add Label
+        shell: bash
+        env:
+          ALL_LABELS: ${{ steps.sync-test-enable.outputs.all-labels }}
+        run: |
+          [[ "${ALL_LABELS}" =~ sync-test ]]
+      - name: labeler (no-match sync-test label)
+        id: sync-test-disable
+        uses: ./labeler
+        with:
+          pr-number: ${{ github.event.inputs.pr-number || github.event.number }}
+          configuration-path: .github/labeler-sync-test-disable.yml
+      - name: Test No Sync
+        shell: bash
+        env:
+          ALL_LABELS: ${{ steps.sync-test-disable.outputs.all-labels }}
+        run: |
+          [[ "${ALL_LABELS}" =~ sync-test ]]
+      - name: labeler (no-match sync-test label with sync)
+        id: sync-test-disable-with-sync
+        uses: ./labeler
+        with:
+          pr-number: ${{ github.event.inputs.pr-number || github.event.number }}
+          configuration-path: .github/labeler-sync-test-disable.yml
+          sync-labels: true
+      - name: Test
+        shell: bash
+        env:
+          ALL_LABELS: ${{ steps.sync-test-disable-with-sync.outputs.all-labels }}
+        run: |
+          ! [[ "${ALL_LABELS}" =~ sync-test ]]

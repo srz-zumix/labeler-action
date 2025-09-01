@@ -38,7 +38,7 @@ runs:
   steps:
     - uses: aquaproj/aqua-installer@d1fe50798dbadd4eb5b98957290ca175f6b4870f # v4.0.2
       env:
-        $AQUA_LOG_LEVEL: debug
+        AQUA_LOG_LEVEL: debug
       with:
         aqua_version: v2.53.9
         policy_allow: ${{ github.action_path }}/aqua-policy.yaml

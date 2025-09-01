@@ -39,7 +39,7 @@ runs:
     - uses: aquaproj/aqua-installer@d1fe50798dbadd4eb5b98957290ca175f6b4870f # v4.0.2
       with:
         aqua_version: v2.53.9
-        policy_allow: aqua-policy.yaml
+        # policy_allow: aqua-policy.yaml
         working_directory: ${{ github.action_path }}
     - name: gh-labeler-kit path
       id: gh-labeler-kit

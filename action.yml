@@ -55,11 +55,16 @@ runs:
         GH_TOKEN: ${{ inputs.repo-token }}
         INPUTS_CONFIGURATION_PATH: ${{ inputs.configuration-path }}
         INPUTS_PR_NUMBER: ${{ inputs.pr-number }}
+        INPUTS_SYNC_LABELS: ${{ inputs.sync-labels }}
         GH_LABELER_KIT: ${{ steps.gh-labeler-kit.outputs.path }}
       run: |
+        LABEL_KIT_OPTIONS=()
+        if [ "${INPUTS_SYNC_LABELS}" = "true" ]; then
+          LABEL_KIT_OPTIONS+=(--sync)
+        fi
         "${GH_LABELER_KIT}" labeler \
           --config ${INPUTS_CONFIGURATION_PATH} \
-          ${{ inputs.sync-labels && '--sync' || '' }} \
+          "${LABEL_KIT_OPTIONS[@]}" \
           ${INPUTS_PR_NUMBER}
 
 branding:

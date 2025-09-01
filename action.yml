@@ -44,6 +44,8 @@ runs:
     - name: gh-labeler-kit path
       id: gh-labeler-kit
       shell: bash
+      env:
+        AQUA_POLICY_CONFIG: aqua-policy.yaml
       run: |
         gh-label-kit --version
         echo "path=$(aqua which gh-label-kit)" >> "${GITHUB_OUTPUT}"

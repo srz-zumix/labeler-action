@@ -22,6 +22,8 @@ jobs:
       # - name: Remove .git
       #   run: rm -rf labeler/.git
       - name: labeler
+        env:
+          AQUA_LOG_LEVEL: debug
         id: labeler
         uses: ./labeler
         with:

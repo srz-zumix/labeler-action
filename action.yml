@@ -42,8 +42,6 @@ runs:
         policy_allow: aqua-policy.yaml
         working_directory: ${{ github.action_path }}
     - name: gh-labeler-kit path
-      env:
-        AQUA_LOG_LEVEL: debug
       id: gh-labeler-kit
       shell: bash
       run: |

@@ -16,5 +16,14 @@ registries:
 
 packages:
 - name: suzuki-shunsuke/pinact@v3.4.2
+  tags:
+    - dev
+- name: crates.io/zizmor@1.12.1
+  tags:
+    - dev
+    - ci
 - name: srz-zumix/gh-label-kit@v0.6.0
   registry: local
+  tags:
+    - dev
+    - action

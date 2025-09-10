@@ -18,10 +18,10 @@ documentation:
 labeler-action:
 - changed-files:
   - any-glob-to-any-file:
-    - '*'
+    - '**'
 
 sync-test:
 - changed-files:
   - any-glob-to-any-file:
-    - '*'
+    - '**'
 

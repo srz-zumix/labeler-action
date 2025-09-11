@@ -18,4 +18,4 @@ documentation:
 labeler-action:
 - changed-files:
   - any-glob-to-any-file:
-    - '*'
+    - '**'

@@ -16,7 +16,7 @@ This action is compatible with [actions/labeler](https://github.com/actions/labe
 ci:
 - any:
   - changed-files:
-    - any-glob-to-any-file: '.github/*'
+    - any-glob-to-all-files: '.github/**'
 - color: '#7c0bb2'
 ```
 

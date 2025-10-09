@@ -37,6 +37,9 @@ on:
 jobs:
   labeler:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
     steps:
       - uses: srz-zumix/labeler-action@v0
         with:

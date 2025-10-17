@@ -24,6 +24,11 @@ inputs:
     description: 'The pull request number(s)'
     default: ${{ github.event.number }}
     required: false
+  review-request:
+    description: 'Control review request behavior: none (no requests), addto (request on new labels), always (request on all matched labels)'
+    default: 'addto'
+    type: string
+    required: false
 
 outputs:
   new-labels:
@@ -59,11 +64,15 @@ runs:
         INPUTS_CONFIGURATION_PATH: ${{ inputs.configuration-path }}
         INPUTS_PR_NUMBER: ${{ inputs.pr-number }}
         INPUTS_SYNC_LABELS: ${{ inputs.sync-labels }}
+        INPUTS_REVIEW_REQUEST: ${{ inputs.review-request }}
         GH_LABELER_KIT: ${{ steps.gh-labeler-kit.outputs.path }}
       run: |
         LABEL_KIT_OPTIONS=()
         if [ "${INPUTS_SYNC_LABELS}" = "true" ]; then
           LABEL_KIT_OPTIONS+=(--sync)
+        fi
+        if [ -n "${INPUTS_REVIEW_REQUEST}" ]; then
+          LABEL_KIT_OPTIONS+=(--review-request "${INPUTS_REVIEW_REQUEST}")
         fi
         set -x
         "${GH_LABELER_KIT}" labeler \

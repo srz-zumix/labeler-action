@@ -18,9 +18,13 @@ ci:
   - changed-files:
     - any-glob-to-all-files: '.github/**'
 - color: '#7c0bb2'
+- codeowners:
+  - srz-zumix
+  - "@org/team"
+  - "org/team..." # expand team members
 ```
 
-> **Note:** The `color` setting is ignored by `actions/labeler`. It will not cause an error.
+> **Note:** The `color` and `codeowners` setting is ignored by `actions/labeler`. It will not cause an error.
 
 - Call this action in your workflow:
 

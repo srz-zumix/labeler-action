@@ -22,7 +22,7 @@ packages:
   tags:
     - dev
     - ci
-- name: srz-zumix/gh-label-kit@v0.8.0
+- name: srz-zumix/gh-label-kit@v0.8.1
   registry: local
   tags:
     - dev

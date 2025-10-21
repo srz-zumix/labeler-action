@@ -51,6 +51,8 @@ runs:
       shell: bash
       env:
         GH_HOST: github.com
+        GH_TOKEN: ""
+        GH_ENTERPRISE_TOKEN: ""
         AQUA_POLICY_CONFIG: aqua-policy.yaml
       run: |
         gh-label-kit --version

@@ -34,6 +34,11 @@ ci:
 name: Labeler
 on:
   pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review # for review-request: ready_for_review/always_reviewable
   workflow_dispatch:
     inputs:
       pr-number:
@@ -50,6 +55,7 @@ jobs:
       - uses: srz-zumix/labeler-action@v0
         with:
           pr-number: ${{ github.event.inputs.pr-number || github.event.number }}
+          review-request: ready_for_review
 ```
 
 ## Reference

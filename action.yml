@@ -25,7 +25,13 @@ inputs:
     default: ${{ github.event.number }}
     required: false
   review-request:
-    description: 'Control review request behavior: none (no requests), addto (request on new labels), always (request on all matched labels)'
+    description: |
+      Control review request behavior:
+        none (no requests),
+        addto (request on new labels),
+        ready_for_review (request on new labels when PR is ready for review, require ready_for_review activity),
+        always_reviewable (request on all matched labels when PR is reviewable),
+        always (request on all matched labels)
     default: 'addto'
     type: string
     required: false

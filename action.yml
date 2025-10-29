@@ -4,7 +4,7 @@ author: 'srz-zumix'
 inputs:
   repo-token:
     description: 'The GitHub token used to manage labels'
-    default: ${{ github.token }}
+    default: ''
     required: false
   configuration-path:
     description: 'The path for the label configurations'
@@ -68,14 +68,16 @@ runs:
       id: labeler
       shell: bash
       env:
-        GH_TOKEN: ${{ inputs.repo-token }}
-        GH_ENTERPRISE_TOKEN: ${{ inputs.repo-token }}
+        INPUTS_GITHUB_TOKEN: ${{ inputs.repo-token }}
         INPUTS_CONFIGURATION_PATH: ${{ inputs.configuration-path }}
         INPUTS_PR_NUMBER: ${{ inputs.pr-number }}
         INPUTS_SYNC_LABELS: ${{ inputs.sync-labels }}
         INPUTS_REVIEW_REQUEST: ${{ inputs.review-request }}
         GH_LABELER_KIT: ${{ steps.gh-labeler-kit.outputs.path }}
       run: |
+        export GH_TOKEN="${INPUTS_GITHUB_TOKEN:-${GH_TOKEN:-${{ github.token }}}}"
+        export GH_ENTERPRISE_TOKEN="${INPUTS_GITHUB_TOKEN:-${GH_ENTERPRISE_TOKEN:-${{ github.token }}}}"
+
         LABEL_KIT_OPTIONS=()
         if [ "${INPUTS_SYNC_LABELS}" = "true" ]; then
           LABEL_KIT_OPTIONS+=(--sync)

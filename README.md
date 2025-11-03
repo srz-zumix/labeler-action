@@ -25,7 +25,7 @@ ci:
 ```
 
 > **Note:**  
-> The `color` and `codeowners` setting is ignored by `actions/labeler`. It will not cause an error.  
+> The `color` `description` and `codeowners` setting is ignored by `actions/labeler`. It will not cause an error.  
 > If you want to expand teams, you need a token with read access to team members.
 
 - Call this action in your workflow:

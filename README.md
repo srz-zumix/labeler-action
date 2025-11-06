@@ -58,6 +58,15 @@ jobs:
           review-request: ready_for_review
 ```
 
+## Environments
+
+| Name | Description |
+|------|-------------|
+| GH_HOST | Specify the GitHub hostname |
+| GH_TOKEN | Takes priority over inputs.repo-token |
+| GH_ENTERPRISE_TOKEN | Takes priority over inputs.repo-token |
+| AQUA_GITHUB_TOKEN | Set AQUA_GITHUB_TOKEN to avoid rate limits |
+
 ## Reference
 
 - [actions/labeler](https://github.com/actions/labeler)

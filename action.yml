@@ -57,10 +57,10 @@ runs:
       shell: bash
       env:
         GH_HOST: github.com
-        GH_TOKEN: ""
         GH_ENTERPRISE_TOKEN: ""
         AQUA_POLICY_CONFIG: aqua-policy.yaml
       run: |
+        export GH_TOKEN="${AQUA_GITHUB_TOKEN:-}"
         gh-label-kit --version
         echo "path=$(aqua which gh-label-kit)" >> "${GITHUB_OUTPUT}"
       working-directory: ${{ github.action_path }}

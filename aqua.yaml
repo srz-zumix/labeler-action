@@ -9,20 +9,20 @@
 #   - all
 registries:
 - type: standard
-  ref: v4.439.0 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.448.0 # renovate: depName=aquaproj/aqua-registry
 - name: local
   type: local
   path: aqua-registry.yaml
 
 packages:
-- name: suzuki-shunsuke/pinact@v3.4.4
+- name: suzuki-shunsuke/pinact@v3.6.0
   tags:
     - dev
-- name: crates.io/zizmor@1.16.3
+- name: crates.io/zizmor@1.19.0
   tags:
     - dev
     - ci
-- name: srz-zumix/gh-label-kit@v0.12.1
+- name: srz-zumix/gh-label-kit@v0.13.0
   registry: local
   tags:
     - dev

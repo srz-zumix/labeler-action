@@ -14,18 +14,22 @@ This action is compatible with [actions/labeler](https://github.com/actions/labe
 
 ```yaml
 ci:
-- any:
-  - changed-files:
-    - any-glob-to-all-files: '.github/**'
-- color: '#7c0bb2'
-- codeowners:
-  - srz-zumix
-  - "@org/team"
-  - "org/team..." # expand team members
+  - any:
+    - changed-files:
+      - any-glob-to-all-files: '.github/**'
+  - color: '#7c0bb2'
+  - codeowners:
+    - srz-zumix
+    - "@org/team"
+    - "org/team..." # expand team members
+  - author: '@myorg/developers'
+
+bot:
+  - author: '.*\[bot\]$'
 ```
 
 > **Note:**  
-> The `color` `description` and `codeowners` setting is ignored by `actions/labeler`. It will not cause an error.  
+> The `color`, `description`, `codeowners`, and `author` settings are ignored by `actions/labeler`. It will not cause an error.  
 > If you want to expand teams, you need a token with read access to team members.
 
 - Call this action in your workflow:
@@ -72,3 +76,5 @@ jobs:
 
 - [actions/labeler](https://github.com/actions/labeler)
 - [srz-zumix/gh-label-kit](https://github.com/srz-zumix/gh-label-kit)
+- [aquaproj/aqua](https://github.com/aquaproj/aqua)
+- [srz-zumix/aqua-installer-cache](https://github.com/srz-zumix/aqua-installer-cache)

@@ -7,6 +7,8 @@ on:
         description: 'The pull request number(s)'
         required: true
 
+permissions: {}
+
 jobs:
   test:
     permissions:
@@ -14,6 +16,11 @@ jobs:
       pull-requests: write
       issues: write
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cache:
+          - true
+          - false
     steps:
       - uses: actions/checkout@v6
         with:
@@ -28,6 +35,7 @@ jobs:
         uses: ./labeler
         with:
           pr-number: ${{ github.event.inputs.pr-number || github.event.number }}
+          cache: ${{ matrix.cache }}
       - name: Test
         shell: bash
         env:
@@ -84,3 +92,13 @@ jobs:
           ALL_LABELS: ${{ steps.sync-test-disable-with-sync.outputs.all-labels }}
         run: |
           ! [[ "${ALL_LABELS}" =~ sync-test ]]
+
+  ci-status-check:
+    runs-on: ubuntu-latest
+    needs:
+      - test
+      - sync-test
+    if: failure()
+    steps:
+      - name: CI Status Check Failed
+        run: exit 1

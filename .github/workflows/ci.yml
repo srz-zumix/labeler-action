@@ -92,3 +92,13 @@ jobs:
           ALL_LABELS: ${{ steps.sync-test-disable-with-sync.outputs.all-labels }}
         run: |
           ! [[ "${ALL_LABELS}" =~ sync-test ]]
+
+  ci-status-check:
+    runs-on: ubuntu-latest
+    needs:
+      - test
+      - sync-test
+    if: failure()
+    steps:
+      - name: CI Status Check Failed
+        run: exit 1

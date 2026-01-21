@@ -20,15 +20,15 @@ ci:
       - all-files-to-any-glob:
         - '*.yml'
         - '.github/**'
+    # - all-files-to-any-glob:
+    #  - '*.yml'
+    #  - '.github/**'
   - color: '#7c0bb2'
   - codeowners:
     - srz-zumix
     - "@org/team"
     - "org/team..." # expand team members
   - author: '@myorg/developers'
-  # - all-files-to-any-glob:
-  #   - '*.yml'
-  #   - '.github/**'
 
 bot:
   - author: '.*\[bot\]$'
@@ -36,7 +36,7 @@ bot:
 
 > **Note:**  
 > The `color`, `description`, `codeowners`, and `author` settings are ignored by `actions/labeler`. It will not cause an error.  
-> The `all-files-to-any-glob` under `changed-files` is not compatible with `actions/labeler`. If you want a configuration file that can be loaded by `actions/labeler`, write `all-files-to-any-glob` at the same level as `color`.  
+> The `all-files-to-any-glob` under `changed-files` is not compatible with `actions/labeler`. If you want a configuration file that can be loaded by `actions/labeler`, write `all-files-to-any-glob` at the same level as `changed-files`.  
 > If you want to expand teams, you need a token with read access to team members.
 
 - Call this action in your workflow:

@@ -8,22 +8,22 @@
 #   supported_envs:
 #   - all
 registries:
-- type: standard
-  ref: v4.460.1 # renovate: depName=aquaproj/aqua-registry
-- name: local
-  type: local
-  path: aqua-registry.yaml
+  - type: standard
+    ref: v4.471.0 # renovate: depName=aquaproj/aqua-registry
+  - name: local
+    type: local
+    path: aqua-registry.yaml
 
 packages:
-- name: suzuki-shunsuke/pinact@v3.8.0
-  tags:
-    - dev
-- name: crates.io/zizmor@1.22.0
-  tags:
-    - dev
-    - ci
-- name: srz-zumix/gh-label-kit@v0.16.0
-  registry: local
-  tags:
-    - dev
-    - action
+  - name: suzuki-shunsuke/pinact@v3.9.0
+    tags:
+      - dev
+  - name: zizmorcore/zizmor@v1.22.0
+    tags:
+      - dev
+      - ci
+  - name: srz-zumix/gh-label-kit@v0.17.0
+    registry: local
+    tags:
+      - dev
+      - action

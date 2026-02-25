@@ -16,7 +16,7 @@ inputs:
     type: boolean
     required: false
   dot:
-    description: 'This is a no side effect option for compatibility only'
+    description: 'Whether or not to auto-include paths starting with dot (e.g. `.github`)'
     default: true
     type: boolean
     required: false
@@ -87,6 +87,7 @@ runs:
         INPUTS_PR_NUMBER: ${{ inputs.pr-number }}
         INPUTS_SYNC_LABELS: ${{ inputs.sync-labels }}
         INPUTS_REVIEW_REQUEST: ${{ inputs.review-request }}
+        INPUTS_DOT: ${{ inputs.dot }}
         GH_LABELER_KIT: ${{ steps.gh-labeler-kit.outputs.path }}
       run: |
         export GH_TOKEN="${INPUTS_GITHUB_TOKEN:-${GH_TOKEN:-${{ github.token }}}}"
@@ -98,6 +99,9 @@ runs:
         fi
         if [ -n "${INPUTS_REVIEW_REQUEST}" ]; then
           LABEL_KIT_OPTIONS+=(--review-request "${INPUTS_REVIEW_REQUEST}")
+        fi
+        if [ "${INPUTS_DOT}" = "false" ]; then
+          LABEL_KIT_OPTIONS+=(--no-hidden)
         fi
         set -x
         "${GH_LABELER_KIT}" labeler \

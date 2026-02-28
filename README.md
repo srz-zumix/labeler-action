@@ -6,7 +6,10 @@ This action is compatible with [actions/labeler](https://github.com/actions/labe
 
 - **Compatible with actions/labeler**: You can use your existing label definition files without any changes.
 - **Flexible triggers**: Can be executed on events other than `on: pull_request` (e.g., `push`, `workflow_dispatch`, etc.), allowing labeling processes outside of pull request events.
-- **Supports label color settings**
+- **Enhanced label settings**: Supports setting label `color` and `description` in the configuration file.
+- **CodeOwners filtering**: Filter labels based on code owners using the `codeowners` field.
+- **Author filtering**: Filter labels based on PR author using the `author` field (supports regular expressions and team names).
+- **Team member expansion**: Expand GitHub team members by adding `...` suffix to team names (e.g., `org/team...`).
 
 ## Usage
 
@@ -73,7 +76,7 @@ jobs:
 ## Environments
 
 | Name | Description |
-|------|-------------|
+| ------ | ------------- |
 | GH_HOST | Specify the GitHub hostname |
 | GH_TOKEN | Takes priority over inputs.repo-token |
 | GH_ENTERPRISE_TOKEN | Takes priority over inputs.repo-token |

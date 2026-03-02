@@ -35,6 +35,11 @@ inputs:
     default: 'addto'
     type: string
     required: false
+  strict-config:
+    description: 'Whether or not to fail if the configuration file is invalid'
+    default: false
+    type: boolean
+    required: false
   cache:
     description: 'Whether or not to use aqua install cache'
     default: true
@@ -88,6 +93,7 @@ runs:
         INPUTS_SYNC_LABELS: ${{ inputs.sync-labels }}
         INPUTS_REVIEW_REQUEST: ${{ inputs.review-request }}
         INPUTS_DOT: ${{ inputs.dot }}
+        INPUTS_STRICT_CONFIG: ${{ inputs.strict-config }}
         GH_LABELER_KIT: ${{ steps.gh-labeler-kit.outputs.path }}
       run: |
         export GH_TOKEN="${INPUTS_GITHUB_TOKEN:-${GH_TOKEN:-${{ github.token }}}}"
@@ -102,6 +108,9 @@ runs:
         fi
         if [ "${INPUTS_DOT}" = "false" ]; then
           LABEL_KIT_OPTIONS+=(--no-hidden)
+        fi
+        if [ "${INPUTS_STRICT_CONFIG}" = "true" ]; then
+          LABEL_KIT_OPTIONS+=(--strict)
         fi
         set -x
         "${GH_LABELER_KIT}" labeler \
